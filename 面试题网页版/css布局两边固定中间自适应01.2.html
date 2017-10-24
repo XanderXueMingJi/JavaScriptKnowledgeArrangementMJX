@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>第二种：左右两侧采用绝对定位 中间同样采用margin-left margin-right方法： </title>
+    <style>
+       #left, #right {
+           position: absolute;
+           top: 0;
+           width: 220px;
+           height: 100px;
+       }
+
+       #left {
+           left: 0;
+           background-color: blue;
+       }
+
+       #right {
+           right: 0;
+           background-color: red;
+       }
+
+       #main {
+           background-color: yellow;
+           margin: 0 230px;
+           height: 100%;
+       }
+
+    </style>
+</head>
+<body>
+   <div id="left">左边栏</div>
+   <div id="right">右边栏</div>
+   <div id="main">主内容</div>
+ 
+</body>
+</html>
