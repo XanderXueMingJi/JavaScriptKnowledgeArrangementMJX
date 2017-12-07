@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .article {
+            /* 声明为网格布局 */
+            display: grid;
+            /* 宽度 */
+            width: 100%;
+            /* 高度设置 */
+            /* grid-template-rows: 100px; */
+            /* 列宽的占比： 左 300px  中间:auto  右300px */
+            grid-template-columns: 300px auto 300px; 
+                  /* 我添加的，如果没有，后面宽带缩进会造成页面崩坏 */
+       min-width: 808px;
+        }
+        .left {
+            background-color: rebeccapurple;
+        }
+
+        .content {
+            background-color: rgb(241, 218, 37);
+        }
+
+        .right {
+            background-color: rgba(40, 199, 31, 0.775);
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="article">
+        <div class="left">
+
+        </div>
+
+        <div class="content">
+                <p>
+                        问题（缺点）：
+                     </p>
+                     <p>
+                        优点：
+                     </p>
+                     <p>
+                            测试
+                        </p>
+                        <p>
+                               测试
+                           </p>
+                           <p>
+                                   测试
+                               </p>
+                               <p>
+                                       测试
+                                   </p>
+                                   <p>
+                                           测试
+                                       </p>
+                                       <p>
+                                               测试
+                                           </p>
+        </div>
+
+        <div class="right">
+
+        </div>
+    </div>
+</body>
+
+</html>

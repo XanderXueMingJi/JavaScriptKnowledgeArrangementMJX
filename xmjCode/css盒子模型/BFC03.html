@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #float {
+            background-color: red;
+             /* 关键点 计算BFC高度的时候，浮动元素(子元素)也会参与计算 */
+             overflow: auto;
+        }
+
+        .float {
+            float:left;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    
+    <section id="float">
+        <div class="float">
+            我是浮动元素
+        </div>
+    </section>
+
+</body>
+</html>

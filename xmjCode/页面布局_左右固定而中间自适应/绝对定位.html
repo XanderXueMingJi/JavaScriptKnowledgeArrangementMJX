@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+         .article {
+       /* 我添加的，如果没有，后面宽带缩进会造成页面崩坏 */
+       min-width: 808px;
+       position: relative;
+    }
+
+
+
+    .article>div {
+        position: absolute;
+        height: 100px;
+    }
+
+    .left {
+        left: 0px;
+        width: 300px;
+        background-color: red;
+    }
+
+    .right {
+        right: 0px;
+        width: 300px;
+        background-color: yellow;
+    }
+
+    .center {
+
+        /* 任意写漏的地方关键地方！！！ */
+        left: 300px;
+        right: 300px;
+
+
+        background-color:blueviolet;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="article">
+        <div class="left">
+
+        </div>
+
+        <div class="center">
+            <h1>
+                绝对定位解决方案
+            </h1>
+            <p>
+                    问题（缺点）：布局脱离文档流，意味着下面的子元素也脱离了文档流，导致该方案的可使用性比较差
+                 </p>
+                 <p>
+                    优点：快捷
+                 </p>
+                 <p>
+                        测试
+                    </p>
+                    <p>
+                           测试
+                       </p>
+                       <p>
+                               测试
+                           </p>
+                           <p>
+                                   测试
+                               </p>
+                               <p>
+                                       测试
+                                   </p>
+                                   <p>
+                                           测试
+                                       </p>
+        </div>
+
+        <div class="right">
+
+        </div>
+    </div>
+</body>
+
+</html>

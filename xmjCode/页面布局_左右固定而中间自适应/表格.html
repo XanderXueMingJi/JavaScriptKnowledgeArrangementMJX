@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .atricle {
+            /* 把容器撑开 */
+            width: 100%;
+            display: table;
+            height: 100px;
+
+                   
+                  /* 我添加的，如果没有，后面宽带缩进会造成页面崩坏 */
+       min-width: 808px;
+        }
+
+        .atricle>div {
+            display: table-cell;
+        }
+
+        .left {
+            width: 300px;
+            background: red;
+        }
+
+        .content {
+            background-color: greenyellow;
+        }
+
+        .right {
+            width: 300px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="atricle">
+        <div class="left"></div>
+        <div class="content">
+                <p>
+                        问题（缺点）：栅格布局，当其中某一个单元格高度超出，其他单元格也要调整高度（我觉得是优点）
+                     </p>
+                     <p>
+                        优点：兼容性比较好的，如果弹性布局解决不了的问题可以考虑使用表格布局
+                     </p>
+                     <p>
+                            测试
+                        </p>
+                        <p>
+                               测试
+                           </p>
+                           <p>
+                                   测试
+                               </p>
+                               <p>
+                                       测试
+                                   </p>
+                                   <p>
+                                           测试
+                                       </p>
+                                       <p>
+                                               测试
+                                           </p>
+        </div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>

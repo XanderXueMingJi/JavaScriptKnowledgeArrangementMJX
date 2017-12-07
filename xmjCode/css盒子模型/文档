@@ -1,0 +1,55 @@
+1.盒子模型是什么？
+    基本概念：标准模型 + IE模型
+
+
+
+2.标准模型 与 IE模型区别
+    计算宽度和高度的不同
+
+    标准模型宽度是content的宽，高是conent的高
+
+    IE模型宽度是border-left + padding-left + content的宽 + padding-right + border-right
+          高度是border-top + padding-top + content的高 + padding-bottom + border-bottom  
+
+
+3.css如何设置这两种模型
+        标准模型：box-sizing: content-box;
+        IE模型： box-sizing: border-box;
+
+4.JS如何设置或者获取盒子模型对应的宽和高 
+
+    dom.style.width / height (缺点：只能获取内联样式设置的宽和高)
+
+    dom.currentStyle.width / height (缺点：只适合IE)
+
+    window.getComputedStyle(dom).width / height （兼容主流浏览器）
+
+    dom.getBoundingClientRect().width / height （用于计算一个元素的绝对位置）
+
+
+
+5. 实例题（根据盒子模型解释边距重叠）  
+    BFC基本概念：块级格式化上下文
+    BFC原理（渲染规则）：1.在BFC这个元素的垂直方向发生重叠
+                        2.BFC的区域不会与浮动元素的both发生重叠
+                        3.在页面是个独立的容器，外面的元素不会影响里面的元素，反之亦然
+                        4.计算BFC高度的时候，浮动元素(子元素)也会参与计算(清除浮动)
+                        具体看对应的html例子BFC01 02.。。。
+    如何创建BFC：1.float不为none
+                2.positon不为static或者relative
+                3.display属性值与table相关或者inline-block
+                4.overflow不为 visible;
+    BFC使用场景：            
+
+
+
+
+6.BFC（边距重叠解决方案）
+
+
+
+
+
+
+
+

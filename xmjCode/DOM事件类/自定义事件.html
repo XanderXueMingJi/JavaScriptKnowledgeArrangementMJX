@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <style>
+        .ev {
+            width: 300px;
+            height: 100px;
+            background-color: red;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ev">目标元素</div>
+
+    <div class="rrrrrrr">第二个目标元素</div>
+
+    <div class="thr">第三个目标元素</div>
+
+    <script>
+        var dom = document.getElementsByClassName("ev")[0];
+        var rrrrrrr = document.getElementsByClassName("rrrrrrr")[0];
+        var thr = document.getElementsByClassName("thr")[0];
+
+
+
+        //自定义事件   一
+        var eve = new Event('test');
+        dom.addEventListener('test', function () {
+            console.log('test 自定义...');
+        });
+
+        // dom.dispatchEvent(eve);
+
+        //让浏览器触发事件，例如：
+        setTimeout(function () {
+            dom.dispatchEvent(eve);
+        }, 10000);
+
+
+
+        ////////    二
+        //HTMLEvents好像是固定的，不能变   //创建event的对象实例。  
+        var events = document.createEvent('HTMLEvents');
+
+        // 3个参数：事件类型，是否冒泡，是否阻止浏览器的默认行为  
+        events.initEvent("oneating", true, true);
+
+        /*属性，随便自己定义*/
+        events.name = 'xmj',
+            events.age = 27;
+
+
+        //绑定自定义事件oneating 
+        rrrrrrr.addEventListener('oneating', function (e) {
+            console.log("自带参数", e.name);
+            console.log('eerererer');
+        }, false)
+
+    
+    //触发自定义事件oneating  
+    rrrrrrr.dispatchEvent(events);
+
+        //三
+
+        var eventThr = document.createEvent("CustomEvent");
+        eventThr.initCustomEvent('thrTest', false, true, {
+            a: 123,
+            b: 'wjheiofjwieof'
+        });
+        
+
+        thr.addEventListener('thrTest', function(e) {
+            var obj = e.detail;
+            console.log('thrthr');
+            console.log("自带参数",obj.a);
+            console.log("自带参数",obj.b);
+        }, false);
+
+        thr.dispatchEvent(eventThr);
+    </script>
+</body>
+
+</html>

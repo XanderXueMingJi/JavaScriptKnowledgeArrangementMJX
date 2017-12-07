@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .article {
+            /* 必须的 */
+            display: flex;
+            
+                  /* 我添加的，如果没有，后面宽带缩进会造成页面崩坏 */
+       min-width: 808px;
+        }
+
+        .article>div {
+            /* height: 100px; */
+        }
+
+        .left {
+            width: 300px;
+            background-color: red;
+
+        }
+
+        .right {
+            width: 300px;
+            background-color: greenyellow;
+            
+        }
+
+    .center{
+        /* 关键点 */
+        flex: 1;
+        background-color: yellow
+    }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="article">
+        <div class="left">
+
+        </div>
+        <div class="center">
+                <p>
+                        问题（缺点）：个人觉得是在低版本浏览器用不了
+                     </p>
+                     <p>
+                        优点：它是解决浮动和绝对定义的不足出现的，相对来说比较完美
+                     </p>
+                     <p>
+                         测试
+                     </p>
+                     <p>
+                            测试
+                        </p>
+                        <p>
+                                测试
+                            </p>
+                            <p>
+                                    测试
+                                </p>
+                                <p>
+                                        测试
+                                    </p>
+                                    <p>
+                                            测试
+                                        </p>
+        </div>
+        <div class="right">
+
+        </div>
+    </div>
+</body>
+
+</html>

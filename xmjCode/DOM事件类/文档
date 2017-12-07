@@ -1,0 +1,40 @@
+
+
+DOM事件类
+    1.基本概念：DOM事件的级别
+        DOM0 element.onclick = function() {}
+
+        DOM2 element.addEventListener('click', function() {}, false)  （false- false- 默认。事件句柄在冒泡阶段执行）
+
+        DOM3 element.addEventListener('keyup', function() {}, false)  (事件类型增加了许多)
+
+    2.DOM事件模型
+        冒泡和捕获
+
+
+    3.DOM事件流
+        1. 捕获
+        2. 目标阶段
+        3. 冒泡
+
+    4.描述DOM事件捕获的具体流程
+        window -》 document -》html(document.documentElement) -》 body(document.body) -》。。。。 -》目标元素  （捕获）
+
+    5.Event对象常见应用
+        event.preventDefault()  阻止默认事件（阻止点击a标签跳转页面）
+        event.stopPropagation() 阻止冒泡行为
+        event.stoplmmediatePropagation() 未验证！！  一个按钮，绑定两个click事件1、2，想点击1的时候不想触发2
+        event.currentTarget  关于事件委托（代理）由子元素的事件绑定在父元素上 IE
+        event.target
+
+    6.自定义事件  未验证！！
+            1.
+            var eve = new Event('custome');
+            ev.addEventListener('custome', function() {
+                console.log('custome');
+            });
+            ev.dispatchEvent(eve);
+
+            2.
+            CustomEvent
+

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        #article {
+            /* 我添加的，如果没有，后面宽带缩进会造成页面崩坏 */
+            min-width: 808px;
+        }
+
+        #article>div {
+            min-height: 100px;
+        }
+
+        .left {
+            float: left;
+            width: 300px;
+            background-color: red;
+        }
+
+        .right {
+            float: right;
+            width: 300px;
+            background-color: yellow;
+        }
+
+        .center {
+            background-color: blue;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="article">
+        <div class="left"></div>
+
+
+
+        <div class="right"></div>
+
+        <!-- 中间部分需要放在最后面，如果放在right的div上面则失败 -->
+        <div class="center">
+            <h1>
+                浮动解决方案
+            </h1>
+            <p>
+                这是中间部分
+            </p>
+            <p>
+                问题（缺点）：1.浮动后脱离文档流，如果处理不好，会有很多问题
+            </p>
+            <p>
+                问题（缺点）：2.（左右高度固定情况下）中间内容的高度扩展，会占用左边和右边的位置，且文档会拉向最左边
+            </p>
+            <p>
+                解决方案：在中间位置创建BFC
+            </p>
+            <p>
+                优点：兼容性比较好
+            </p>
+            <p>
+                测试
+            </p>
+            <p>
+                测试
+            </p>
+            <p>
+                测试
+            </p>
+            <p>
+                测试
+            </p>
+            <p>
+                测试
+            </p>
+            <p>
+                测试
+            </p>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

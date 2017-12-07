@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #margin {
+            background-color: pink;
+            overflow: hidden;
+        }
+
+        #margin p {
+            margin: 15px auto 25px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    
+        <!-- 在BFC这个元素的垂直方向发生重叠 -->
+    <section id="margin">
+        <p>1</p>
+        <!-- 如果不希望margin重叠起来，就给p元素添加一个父元素，并设置该父元素为BFC
+            <div style="overflow: hidden;">
+                <p>2</p>
+        </div> -->
+
+        <p>2</p>
+        <p>3</p>
+    </section>
+</body>
+</html>

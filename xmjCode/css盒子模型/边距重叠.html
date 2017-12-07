@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+        .parent {
+            background-color: turquoise;
+            /* 关键点 创建了BFC（块级格式化上下文） 更改高度，父级高度从100-》110 */
+            overflow: hidden;
+        }
+        .child {
+            height: 100px;
+            margin-top: 10px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="parent">
+        <div class="child">
+
+        </div>
+    </div>
+</body>
+</html>
