@@ -27,7 +27,7 @@ DOM事件类
         event.currentTarget  关于事件委托（代理）由子元素的事件绑定在父元素上 IE
         event.target
 
-    6.自定义事件  未验证！！
+    6.自定义事件  
             1.
             var eve = new Event('custome');
             ev.addEventListener('custome', function() {

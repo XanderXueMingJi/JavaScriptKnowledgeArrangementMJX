@@ -1,0 +1,53 @@
+1.类与实例
+    1.类的声明
+
+     //类声明
+    function Animal() {
+        this.name = 'name';
+    };
+
+    //es6中class声明 与上面的写法相同
+    class Animal2 {
+        constructor() {
+            this.name = name;
+        }
+    };
+
+    2.生成实例
+     //类的实例化
+    console.log(new Animal(), new Animal2());
+
+2.类与继承  
+    1.如何实现继承
+     就是通过原型链来实现
+
+    2.继承的几种方式
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

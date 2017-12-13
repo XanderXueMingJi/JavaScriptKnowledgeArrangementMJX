@@ -1,0 +1,82 @@
+1.创建对象有几种方法  具体查看demo.html
+    //对象字面量  默认o1、o2的原型链指向Object
+    var o1 = {name: 'o1'};
+    var o2 = new Object({name: 'o2'});
+
+    //用构造函数创建对象
+    var M = function(name) {this.name = name }
+    var o3 = new M('o3');
+
+    //Object.create创建的对象是用原型链来连接的
+    //也就是说o4.__proto__指向p对象   o4.__proto__  === p  ---》true
+    var p = {name: 'o4'};
+    var o4 = Object.create(p);
+
+2.原型、构造函数、实例、原型链分别是什么
+   个人总结：
+   原型是原型对象
+
+   只要是对象，它就是实例
+
+   构造函数，凡是与new搭配的函数（任何函数），它就不再是一个普通的函数，它是构造函数
+
+    关系：
+    1.构造函数可以使用new运算符来生成实例  
+    //var o3 = new M('o3');
+
+    2.函数都有一个prototype属性，这是声明一个函数的时候，js主动加上的（prototype会初始化一个空对象，也就是原型对象），prototype指向原型对象
+    //M.prototype  ---》 {constructor: ƒ}
+
+    3.原型对象通过constructor（构造器）来区分是哪个构造函数引用，即指向对应的函数
+    //M.prototype.constructor  === M //true
+
+    4.实例通过__proto__来指向原型对象
+    //o3.__proto__ === M.prototype //true
+
+    5.原型对象也是对象，所以也有__proto__属性，也就是可以往上找，找到，构造这个实例（原型对象）的原型对象，当前的原型对象也可以往上找。。。 。。。
+    以此类推，一直追溯到Ojbect.prototype为止
+
+    拓展：
+    1.实例对象要调用一个方法，它在自己本身找不到对应的方法时候，它会通过__proto__找到上一级原型对象，如果没有找到，就在上一级原型对象的
+    基础上在通过__proto__。。。 。。。直到Object.prototype，就原路反回，告诉它没有找到
+
+    2.只有构造函数才有prototype，对象是没有prototype！
+
+    3.只有实例对象才有__proto__，函数也是对象，所以也有__proto__
+    //M.__proto__ === Function.prototype   //true  M也是Function的实例
+
+    
+
+
+
+
+
+
+3.instanceof的原理
+instanceof的原理判断实例对象的属性__proto__ 与 构造函数的prototype是否是同一个引用地址
+//o3 instanceof M  --》 true
+//o3 instanceof Object --》 true  只要是在这个原型链上的构造函数，都会被instanceof看作o3（实例对象）的构造函数
+//证明： o3.__proto__ === M.prototype //true
+//       M.prototype.__proto__ === Object.prototype  //true
+//所以我们用constructor属性来判断实例对象的直接父级构造函数： o3.__proto__.constructor === M   //true     
+//o3.__proto__.constructor === Object   //false
+
+
+4.new运算符
+    1.new运算符后面跟着一个构造函数---》一个新对象（空对象）被创建，它继承自构造函数的原型对象 
+    //M.prototype
+
+    2.构造函数M被执行，执行的时候，相应的参数会被传入，
+    同时上下文(this)会被指定为这个新实例。(这个时候，会把我们刚才新创建的对象与这个this关联起来)
+    只有在不传递任何参数的情况下，new M 等同 new M()
+
+    3.如果构造函数返回一个“对象”，那么这个对象会取代整个new出来的结果，如果构造函数
+    没有返回对象，那么new出来的结果为步骤1创建的对象
+    
+
+
+
+
+
+
+
