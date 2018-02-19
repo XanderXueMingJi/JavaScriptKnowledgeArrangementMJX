@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        我是postMassage02.html
+    </h1>
+    <textarea name="" id="text" cols="30" rows="10"></textarea>
+    <script>
+        var text = document.getElementById('text');
+        window.addEventListener('message', function(event) {
+            console.log('event.origin', event.origin);
+            console.log('event.source', event.source);
+            console.log('event.data', event.data);
+        }, false);
+        </script>
+</body>
+</html>

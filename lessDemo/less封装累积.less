@@ -1,0 +1,167 @@
+@charset "utf-8";  
+
+//居中
+.bc(){
+        margin-left: auto;
+        margin-right: auto;
+}
+//左浮动右浮动
+.fl(@fl:left){
+        float: @fl;
+}
+.fr(@fr:right){
+        float: @fr;
+}
+
+
+//清除浮动
+.clearfix{
+    zoom:1;
+    &:after{
+            content: "";
+            display: block;
+            clear: both;
+    }
+}
+
+//14号字体
+.font14(){
+        font-size: 14px;
+}
+.fix(){
+        position: fixed;
+}
+.rel(){
+        position: relative;
+}
+.abs(){
+        position: absolute;     
+}
+//截断文本并显示省略号的混入类
+.ellipsis() {
+    overflow:       hidden;
+    white-space:    nowrap;
+    text-overflow:  -o-ellipsis-lastline;
+    text-overflow:  ellipsis;
+} 
+//透明度混入类
+.opacity(@value:0) {
+        @ie6_value: (@value * 100);
+        -khtml-opacity:@value;
+        -moz-opacity: @value;
+        opacity: @value;
+        filter: ~'alpha(opacity=@{ie6_value})';
+}
+//强制缓行   效果不理想，不建议使用
+.word-wrap(){
+    white-space: pre;
+    white-space: pre-wrap;
+    white-space: pre-line;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -hp-pre-wrap;
+    word-wrap: break-word;
+}
+//用于设置单行文本垂直居中  感觉没什么用 略过
+.line-height(){
+    height: 24px;
+    line-height: 24px;
+}
+//3D文字效果
+.three-d (@font-color){
+    color: @font-color;
+    text-shadow: 0 1px 0 #86b1bf,
+                 0 2px 0 #7da8b6,
+                 0 3px 0 #749fad,
+                 0 4px 0 #6b96a4,
+                 0 5px 0 #527d8b,
+                 0 6px 1px rgba(0, 0, 0, 0.1),
+                 0 0 5px rgba(0, 0, 0, 0.1),
+                 1px 1px 3px rgba(0, 0, 0, 0.3),
+                 3px 3px 5px rgba(0, 0, 0, 0.2),
+                 5px 5px 10px rgba(0, 0, 0, 0.25),
+                 0 10px 10px rgba(0, 0, 0, 0.2),
+                 0 20px 20px rgba(0, 0, 0, 0.15);
+}
+//设置圆形
+.ball(@width, @color) {
+                width: @width;
+                padding-top: @width;
+                background-color: @color;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                        border-radius: 50%;
+}
+//设置三角形
+.sanjiao_top(@w:5px,@c:#f00){  
+    border-width: @w;  
+    border-color: transparent transparent @c transparent;  
+    border-style: dashed dashed solid dashed;  
+}  
+.sanjiao_bottom(@w:5px,@c:#f00){  
+    border-width: @w;  
+    border-color: @c transparent transparent transparent;  
+    border-style: solid dashed dashed dashed;  
+}  
+.sanjiao_left(@w:5px,@c:#f00){  
+    border-width: @w;  
+    border-color:  transparent @c transparent transparent;  
+    border-style:  dashed solid dashed dashed;  
+}  
+.sanjiao_right(@w:5px,@c:#f00){  
+    border-width: @w;  
+    border-color: transparent transparent transparent @c;  
+    border-style:  dashed dashed dashed solid;  
+}  
+
+
+//圆角
+.border-radius(@radius:5px){  
+    -wekit-border-radius: @radius;  
+    -max-border-radius: @radius;  
+    border-radius: @radius;  
+}  
+//边框
+.border(@border-color:red;@border_width:1px;@bstyle:solid){  
+    border: @border-color @border_width  @bstyle ;  
+}  
+//阴影
+.box-shadow(){
+-moz-box-shadow:2px 2px 5px #e3e3e3;/*firefox*/ 
+-webkit-box-shadow:2px 2px 5px #e3e3e3;/*webkit*/ 
+box-shadow:2px 2px 5px #e3e3e3;/*opera或ie9*/ 
+}
+//transition
+.transition(@a:all;@b:ease-out;@c:.2s){
+  -webkit-transition:@a @c @b;
+  -o-transition:@a @c @b;
+  -ms-transition:@a @c @b;
+  -moz-transition:@a @c @b;
+  transition:@a @c @b;
+}
+
+
+//less文件中定义的函数
+//Animation 动画 
+//@animation-name规定需要绑定到选择器的 keyframe 名称
+//@animation-duration规定完成动画所花费的时间，以秒或毫秒计,默认是 0。
+//@animation-timing-function规定动画的速度曲线。默认是 "ease"。
+//@animation-delay规定在动画开始之前的延迟。默认是 0。
+//@animation-iteration-count规定动画应该播放的次数。默认是 1。
+//@animation-direction规定是否应该轮流反向播放动画。默认是 "normal"。
+
+
+.animation(@animation-name,@animation-duration,@animation-timing-function,
+@animation-delay,@animation-iteration-count,@animation-direction){
+animation: @arguments;
+// Firefox: 
+-moz-animation: @arguments;
+//Safari 和 Chrome:
+-webkit-animation: @arguments;
+// Opera: 
+-o-animation: @arguments;
+}
+.my_animation{
+.animation(mykeyframes,5s,linear,2s,infinite,normal);
+}

@@ -1,0 +1,179 @@
+//一
+// 变量
+@background-color: #f78947;
+@text-color: #57c12a;
+
+p {
+    background-color: @background-color;
+    color: @text-color;
+    
+}
+
+//二
+// Mixins（混合）
+#circle {
+    background-color: #754675;
+    border-radius: 100%;
+
+}
+
+
+#small_circle {
+    width: 50px;
+    height: 50px;
+    #circle
+}
+
+//如果你不想 mixin 也以一种规则的形式出现在 CSS 代码中，那么你可以在它的后面加上括号：
+#circleTwo() {
+    background-color: #6be216;
+}
+
+#small_circleTwo {
+    width: 50px;
+    height: 50px;
+    #circleTwo;
+}
+
+
+
+//Mixin 另一个比较酷的功能就是它支持传入参数
+#circleThr(@size: 25px) {
+    background-color: #c12ab9;
+
+    width: @size;
+    height: @size;
+}
+
+#small_circleThr {
+    #circleThr
+}
+
+#big_circleThr {
+    #circleThr(100px)
+}
+
+
+//三
+//嵌套
+
+ul {
+    background-color: #412ac1;
+    padding: 10px;
+
+    li {
+        background-color: #d83d9294;
+        margin: 10px 2px;
+    }
+}
+
+//嵌套之 “js作用域获取变量”
+
+#commodity {
+    @text-color: #c12a71;
+
+    .commodityClass {
+        border-radius: 3px;
+        color: @text-color;
+    }
+}
+
+//四
+//运算
+@div_width: 100px;
+@color: #aed1b0;
+#leftd {
+    height: 50px;
+    width: @div_width * 8;
+    //怎么运算的，我还不太懂！！！
+    background-color: @color - 100;
+}
+
+//五
+//函数
+
+@val: #1fd8bf;
+
+#rightd {
+    height: 50px;
+    width: 50px;
+    background-color: @val;
+
+    &:hover {
+        background-color: fadeout(@val, 50%);
+    }
+}
+
+
+//六  引入代码
+
+@import url('./less封装累积.less');
+
+
+//正常小方块
+.fk() {
+    width: 200px;
+    height: 200px;
+    background-color: #e4d61a;
+
+}
+
+.content {
+    width: 100px;
+    height: 100px;
+    background-color: @background-color;
+    .bc
+}
+
+
+.classFloat {
+    width: 500px;
+    #circleTwo;
+    .bc;
+    .clearfix;
+}
+
+.classLeft {
+    .fl;
+    .fk;
+}
+
+.classRight {
+    .fr;
+    .fk;
+}
+
+#txt {
+    .fk;
+    .ellipsis
+}
+
+.opacity {
+    .fk;
+    .opacity(0.16);
+}
+
+.word_wrapxmj {
+    .fk;
+    .bc;
+    .word-wrap;
+}
+
+
+.td {
+    .three-d(#412ac1);
+}
+
+.yx {
+    // .fk;
+    // background-color: yellow;
+    .ball(122px, rgb(230, 98, 22));
+}
+
+.sjx {
+    .sanjiao_right(25px,rgba(12, 247, 51, 0.596));
+}
+
+.sjxtwo {
+    .sanjiao_bottom(25px, rgb(92, 80, 80));
+}
