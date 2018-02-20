@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)http://es6.ruanyifeng.com/#docs/number -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./esPublic/normalize.css">
+  <link rel="stylesheet" href="./esPublic/app.css">
+  <title>数值的扩展 - ECMAScript 6入门</title>
+  <link rel="shortcut icon" href="http://es6.ruanyifeng.com/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="http://es6.ruanyifeng.com/favicon.ico" type="image/x-icon">
+
+</head>
+<body>
+  <!-- essential -->
+  <div id="sidebar"><h1 id="-ecmascript-6-"><a href="http://es6.ruanyifeng.com/">ECMAScript 6 入门</a></h1>
+<p>作者：<a href="http://www.ruanyifeng.com/">阮一峰</a></p>
+<p>授权：<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">署名-非商用许可证</a></p>
+<form class="searchBox" onsubmit="return searchbar_listener()"><input name="search" type="search"><input type="image" class="searchButton" src="./esPublic/magnifier.jpg" alt="Search"></form><h2 id="-">目录</h2>
+<ol start="0">
+<li><a href="http://es6.ruanyifeng.com/#README">前言</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/intro">ECMAScript 6简介</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/let">let 和 const 命令</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/destructuring">变量的解构赋值</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/string">字符串的扩展</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/regex">正则的扩展</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/number">数值的扩展</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/function">函数的扩展</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/array">数组的扩展</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/object">对象的扩展</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/symbol">Symbol</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/set-map">Set 和 Map 数据结构</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/proxy">Proxy</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/reflect">Reflect</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/promise">Promise 对象</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/iterator">Iterator 和 for...of 循环</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/generator">Generator 函数的语法</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/generator-async">Generator 函数的异步应用</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/async">async 函数</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/class">Class 的基本语法</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/class-extends">Class 的继承</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/decorator">Decorator</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/module">Module 的语法</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/module-loader">Module 的加载实现</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/style">编程风格</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/spec">读懂规格</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/arraybuffer">ArrayBuffer</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/reference">参考链接</a></li>
+</ol>
+<h2 id="-">其他</h2>
+<ul>
+<li><a href="http://github.com/ruanyf/es6tutorial/">源码</a></li>
+<li><a href="https://github.com/ruanyf/es6tutorial/commits/gh-pages">修订历史</a></li>
+<li><a href="https://github.com/ruanyf/es6tutorial/issues">反馈意见</a></li>
+</ul>
+</div>
+  <div id="content"><h1 id="-">数值的扩展</h1><ol class="content-toc" id="content-toc"><li data-src="二进制和八进制表示法" class="link"><a href="http://es6.ruanyifeng.com/#docs/number#二进制和八进制表示法">二进制和八进制表示法</a></li><li data-src="Number-isFinite-Number-isNaN" class="link"><a href="http://es6.ruanyifeng.com/#docs/number#Number.isFinite(), Number.isNaN()">Number.isFinite(), Number.isNaN()</a></li><li data-src="Number-parseInt-Number-parseFloat" class="link"><a href="http://es6.ruanyifeng.com/#docs/number#Number.parseInt(), Number.parseFloat()">Number.parseInt(), Number.parseFloat()</a></li><li data-src="Number-isInteger" class="link"><a href="http://es6.ruanyifeng.com/#docs/number#Number.isInteger()">Number.isInteger()</a></li><li data-src="Number-EPSILON" class="link"><a href="http://es6.ruanyifeng.com/#docs/number#Number.EPSILON">Number.EPSILON</a></li><li data-src="安全整数和Number-isSafeInteger" class="link"><a href="http://es6.ruanyifeng.com/#docs/number#安全整数和Number.isSafeInteger()">安全整数和Number.isSafeInteger()</a></li><li data-src="Math对象的扩展" class="link"><a href="http://es6.ruanyifeng.com/#docs/number#Math对象的扩展">Math对象的扩展</a></li><li data-src="Math-signbit" class="link"><a href="http://es6.ruanyifeng.com/#docs/number#Math.signbit()">Math.signbit()</a></li><li data-src="指数运算符" class="link"><a href="http://es6.ruanyifeng.com/#docs/number#指数运算符">指数运算符</a></li><li data-src="Integer-数据类型" class="link"><a href="http://es6.ruanyifeng.com/#docs/number#Integer 数据类型">Integer 数据类型</a></li></ol>
+<h2 id="二进制和八进制表示法" class="二进制和八进制表示法">二进制和八进制表示法</h2>
+<p>ES6 提供了二进制和八进制数值的新的写法，分别用前缀<code>0b</code>（或<code>0B</code>）和<code>0o</code>（或<code>0O</code>）表示。</p>
+<pre class=" language-javascript"><code class=" language-javascript">0b111110111 <span class="token operator">===</span> <span class="token number">503</span><span class="token comment" spellcheck="true"> // true
+</span>0o767 <span class="token operator">===</span> <span class="token number">503</span><span class="token comment" spellcheck="true"> // true
+</span></code></pre>
+<p>从 ES5 开始，在严格模式之中，八进制就不再允许使用前缀<code>0</code>表示，ES6 进一步明确，要使用前缀<code>0o</code>表示。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// 非严格模式
+</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>0o11 <span class="token operator">===</span> <span class="token number">011</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // true
+</span><span class="token comment" spellcheck="true">
+// 严格模式
+</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token string">'use strict'</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>0o11 <span class="token operator">===</span> <span class="token number">011</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // Uncaught SyntaxError: Octal literals are not allowed in strict mode.
+</span></code></pre>
+<p>如果要将<code>0b</code>和<code>0o</code>前缀的字符串数值转为十进制，要使用<code>Number</code>方法。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token function">Number<span class="token punctuation">(</span></span><span class="token string">'0b111'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"> // 7
+</span><span class="token function">Number<span class="token punctuation">(</span></span><span class="token string">'0o10'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"> // 8
+</span></code></pre>
+<h2 id="Number-isFinite-Number-isNaN" class="Number-isFinite-Number-isNaN">Number.isFinite(), Number.isNaN()</h2>
+<p>ES6 在<code>Number</code>对象上，新提供了<code>Number.isFinite()</code>和<code>Number.isNaN()</code>两个方法。</p>
+<p><code>Number.isFinite()</code>用来检查一个数值是否为有限的（finite）。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Number<span class="token punctuation">.</span><span class="token function">isFinite<span class="token punctuation">(</span></span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // true
+</span>Number<span class="token punctuation">.</span><span class="token function">isFinite<span class="token punctuation">(</span></span><span class="token number">0.8</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // true
+</span>Number<span class="token punctuation">.</span><span class="token function">isFinite<span class="token punctuation">(</span></span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // false
+</span>Number<span class="token punctuation">.</span><span class="token function">isFinite<span class="token punctuation">(</span></span><span class="token number">Infinity</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // false
+</span>Number<span class="token punctuation">.</span><span class="token function">isFinite<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">Infinity</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // false
+</span>Number<span class="token punctuation">.</span><span class="token function">isFinite<span class="token punctuation">(</span></span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // false
+</span>Number<span class="token punctuation">.</span><span class="token function">isFinite<span class="token punctuation">(</span></span><span class="token string">'15'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // false
+</span>Number<span class="token punctuation">.</span><span class="token function">isFinite<span class="token punctuation">(</span></span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // false
+</span></code></pre>
+<p>ES5 可以通过下面的代码，部署<code>Number.isFinite</code>方法。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>global<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> global_isFinite <span class="token operator">=</span> global<span class="token punctuation">.</span>isFinite<span class="token punctuation">;</span>
+
+  Object<span class="token punctuation">.</span><span class="token function">defineProperty<span class="token punctuation">(</span></span>Number<span class="token punctuation">,</span> <span class="token string">'isFinite'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    value<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token function">isFinite<span class="token punctuation">(</span></span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token keyword">typeof</span> value <span class="token operator">===</span> <span class="token string">'number'</span> <span class="token operator">&amp;&amp;</span> <span class="token function">global_isFinite<span class="token punctuation">(</span></span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    configurable<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    enumerable<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    writable<span class="token punctuation">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><code>Number.isNaN()</code>用来检查一个值是否为<code>NaN</code>。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Number<span class="token punctuation">.</span><span class="token function">isNaN<span class="token punctuation">(</span></span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // true
+</span>Number<span class="token punctuation">.</span><span class="token function">isNaN<span class="token punctuation">(</span></span><span class="token number">15</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // false
+</span>Number<span class="token punctuation">.</span><span class="token function">isNaN<span class="token punctuation">(</span></span><span class="token string">'15'</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // false
+</span>Number<span class="token punctuation">.</span><span class="token function">isNaN<span class="token punctuation">(</span></span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // false
+</span>Number<span class="token punctuation">.</span><span class="token function">isNaN<span class="token punctuation">(</span></span><span class="token number">9</span><span class="token operator">/</span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // true
+</span>Number<span class="token punctuation">.</span><span class="token function">isNaN<span class="token punctuation">(</span></span><span class="token string">'true'</span><span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // true
+</span>Number<span class="token punctuation">.</span><span class="token function">isNaN<span class="token punctuation">(</span></span><span class="token string">'true'</span><span class="token operator">/</span><span class="token string">'true'</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // true
+</span></code></pre>
+<p>ES5 通过下面的代码，部署<code>Number.isNaN()</code>。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>global<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> global_isNaN <span class="token operator">=</span> global<span class="token punctuation">.</span>isNaN<span class="token punctuation">;</span>
+
+  Object<span class="token punctuation">.</span><span class="token function">defineProperty<span class="token punctuation">(</span></span>Number<span class="token punctuation">,</span> <span class="token string">'isNaN'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    value<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token function">isNaN<span class="token punctuation">(</span></span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token keyword">typeof</span> value <span class="token operator">===</span> <span class="token string">'number'</span> <span class="token operator">&amp;&amp;</span> <span class="token function">global_isNaN<span class="token punctuation">(</span></span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    configurable<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    enumerable<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    writable<span class="token punctuation">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>它们与传统的全局方法<code>isFinite()</code>和<code>isNaN()</code>的区别在于，传统方法先调用<code>Number()</code>将非数值的值转为数值，再进行判断，而这两个新方法只对数值有效，<code>Number.isFinite()</code>对于非数值一律返回<code>false</code>, <code>Number.isNaN()</code>只有对于<code>NaN</code>才返回<code>true</code>，非<code>NaN</code>一律返回<code>false</code>。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token function">isFinite<span class="token punctuation">(</span></span><span class="token number">25</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // true
+</span><span class="token function">isFinite<span class="token punctuation">(</span></span><span class="token string">"25"</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // true
+</span>Number<span class="token punctuation">.</span><span class="token function">isFinite<span class="token punctuation">(</span></span><span class="token number">25</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // true
+</span>Number<span class="token punctuation">.</span><span class="token function">isFinite<span class="token punctuation">(</span></span><span class="token string">"25"</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // false
+</span>
+<span class="token function">isNaN<span class="token punctuation">(</span></span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // true
+</span><span class="token function">isNaN<span class="token punctuation">(</span></span><span class="token string">"NaN"</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // true
+</span>Number<span class="token punctuation">.</span><span class="token function">isNaN<span class="token punctuation">(</span></span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // true
+</span>Number<span class="token punctuation">.</span><span class="token function">isNaN<span class="token punctuation">(</span></span><span class="token string">"NaN"</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // false
+</span>Number<span class="token punctuation">.</span><span class="token function">isNaN<span class="token punctuation">(</span></span><span class="token number">1</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // false
+</span></code></pre>
+<h2 id="Number-parseInt-Number-parseFloat" class="Number-parseInt-Number-parseFloat">Number.parseInt(), Number.parseFloat()</h2>
+<p>ES6 将全局方法<code>parseInt()</code>和<code>parseFloat()</code>，移植到<code>Number</code>对象上面，行为完全保持不变。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// ES5的写法
+</span><span class="token function">parseInt<span class="token punctuation">(</span></span><span class="token string">'12.34'</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 12
+</span><span class="token function">parseFloat<span class="token punctuation">(</span></span><span class="token string">'123.45#'</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 123.45
+</span><span class="token comment" spellcheck="true">
+// ES6的写法
+</span>Number<span class="token punctuation">.</span><span class="token function">parseInt<span class="token punctuation">(</span></span><span class="token string">'12.34'</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 12
+</span>Number<span class="token punctuation">.</span><span class="token function">parseFloat<span class="token punctuation">(</span></span><span class="token string">'123.45#'</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 123.45
+</span></code></pre>
+<p>这样做的目的，是逐步减少全局性方法，使得语言逐步模块化。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Number<span class="token punctuation">.</span>parseInt <span class="token operator">===</span> parseInt<span class="token comment" spellcheck="true"> // true
+</span>Number<span class="token punctuation">.</span>parseFloat <span class="token operator">===</span> parseFloat<span class="token comment" spellcheck="true"> // true
+</span></code></pre>
+<h2 id="Number-isInteger" class="Number-isInteger">Number.isInteger()</h2>
+<p><code>Number.isInteger()</code>用来判断一个值是否为整数。需要注意的是，在 JavaScript 内部，整数和浮点数是同样的储存方法，所以3和3.0被视为同一个值。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Number<span class="token punctuation">.</span><span class="token function">isInteger<span class="token punctuation">(</span></span><span class="token number">25</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // true
+</span>Number<span class="token punctuation">.</span><span class="token function">isInteger<span class="token punctuation">(</span></span><span class="token number">25.0</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // true
+</span>Number<span class="token punctuation">.</span><span class="token function">isInteger<span class="token punctuation">(</span></span><span class="token number">25.1</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // false
+</span>Number<span class="token punctuation">.</span><span class="token function">isInteger<span class="token punctuation">(</span></span><span class="token string">"15"</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // false
+</span>Number<span class="token punctuation">.</span><span class="token function">isInteger<span class="token punctuation">(</span></span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // false
+</span></code></pre>
+<p>ES5 可以通过下面的代码，部署<code>Number.isInteger()</code>。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>global<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> floor <span class="token operator">=</span> Math<span class="token punctuation">.</span>floor<span class="token punctuation">,</span>
+    isFinite <span class="token operator">=</span> global<span class="token punctuation">.</span>isFinite<span class="token punctuation">;</span>
+
+  Object<span class="token punctuation">.</span><span class="token function">defineProperty<span class="token punctuation">(</span></span>Number<span class="token punctuation">,</span> <span class="token string">'isInteger'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    value<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token function">isInteger<span class="token punctuation">(</span></span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token keyword">typeof</span> value <span class="token operator">===</span> <span class="token string">'number'</span> <span class="token operator">&amp;&amp;</span>
+        <span class="token function">isFinite<span class="token punctuation">(</span></span>value<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
+        <span class="token function">floor<span class="token punctuation">(</span></span>value<span class="token punctuation">)</span> <span class="token operator">===</span> value<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    configurable<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    enumerable<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    writable<span class="token punctuation">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="Number-EPSILON" class="Number-EPSILON">Number.EPSILON</h2>
+<p>ES6在Number对象上面，新增一个极小的常量<code>Number.EPSILON</code>。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Number<span class="token punctuation">.</span>EPSILON<span class="token comment" spellcheck="true">
+// 2.220446049250313e-16
+</span>Number<span class="token punctuation">.</span>EPSILON<span class="token punctuation">.</span><span class="token function">toFixed<span class="token punctuation">(</span></span><span class="token number">20</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">
+// '0.00000000000000022204'
+</span></code></pre>
+<p>引入一个这么小的量的目的，在于为浮点数计算，设置一个误差范围。我们知道浮点数计算是不精确的。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token number">0.1</span> <span class="token operator">+</span> <span class="token number">0.2</span><span class="token comment" spellcheck="true">
+// 0.30000000000000004
+</span>
+<span class="token number">0.1</span> <span class="token operator">+</span> <span class="token number">0.2</span> <span class="token operator">-</span> <span class="token number">0.3</span><span class="token comment" spellcheck="true">
+// 5.551115123125783e-17
+</span>
+<span class="token number">5.551115123125783e-17</span><span class="token punctuation">.</span><span class="token function">toFixed<span class="token punctuation">(</span></span><span class="token number">20</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">
+// '0.00000000000000005551'
+</span></code></pre>
+<p>但是如果这个误差能够小于<code>Number.EPSILON</code>，我们就可以认为得到了正确结果。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token number">5.551115123125783e-17</span> <span class="token operator">&lt;</span> Number<span class="token punctuation">.</span>EPSILON<span class="token comment" spellcheck="true">
+// true
+</span></code></pre>
+<p>因此，<code>Number.EPSILON</code>的实质是一个可以接受的误差范围。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">function</span> withinErrorMargin <span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">abs<span class="token punctuation">(</span></span>left <span class="token operator">-</span> right<span class="token punctuation">)</span> <span class="token operator">&lt;</span> Number<span class="token punctuation">.</span>EPSILON<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">withinErrorMargin<span class="token punctuation">(</span></span><span class="token number">0.1</span> <span class="token operator">+</span> <span class="token number">0.2</span><span class="token punctuation">,</span> <span class="token number">0.3</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">
+// true
+</span><span class="token function">withinErrorMargin<span class="token punctuation">(</span></span><span class="token number">0.2</span> <span class="token operator">+</span> <span class="token number">0.2</span><span class="token punctuation">,</span> <span class="token number">0.3</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">
+// false
+</span></code></pre>
+<p>上面的代码为浮点数运算，部署了一个误差检查函数。</p>
+<h2 id="安全整数和Number-isSafeInteger" class="安全整数和Number-isSafeInteger">安全整数和Number.isSafeInteger()</h2>
+<p>JavaScript能够准确表示的整数范围在<code>-2^53</code>到<code>2^53</code>之间（不含两个端点），超过这个范围，无法精确表示这个值。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">pow<span class="token punctuation">(</span></span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">53</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 9007199254740992
+</span>
+<span class="token number">9007199254740992</span> <span class="token comment" spellcheck="true"> // 9007199254740992
+</span><span class="token number">9007199254740993</span> <span class="token comment" spellcheck="true"> // 9007199254740992
+</span>
+Math<span class="token punctuation">.</span><span class="token function">pow<span class="token punctuation">(</span></span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">53</span><span class="token punctuation">)</span> <span class="token operator">===</span> Math<span class="token punctuation">.</span><span class="token function">pow<span class="token punctuation">(</span></span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">53</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token comment" spellcheck="true">
+// true
+</span></code></pre>
+<p>上面代码中，超出2的53次方之后，一个数就不精确了。</p>
+<p>ES6引入了<code>Number.MAX_SAFE_INTEGER</code>和<code>Number.MIN_SAFE_INTEGER</code>这两个常量，用来表示这个范围的上下限。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Number<span class="token punctuation">.</span>MAX_SAFE_INTEGER <span class="token operator">===</span> Math<span class="token punctuation">.</span><span class="token function">pow<span class="token punctuation">(</span></span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">53</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token comment" spellcheck="true">
+// true
+</span>Number<span class="token punctuation">.</span>MAX_SAFE_INTEGER <span class="token operator">===</span> <span class="token number">9007199254740991</span><span class="token comment" spellcheck="true">
+// true
+</span>
+Number<span class="token punctuation">.</span>MIN_SAFE_INTEGER <span class="token operator">===</span> <span class="token operator">-</span>Number<span class="token punctuation">.</span>MAX_SAFE_INTEGER<span class="token comment" spellcheck="true">
+// true
+</span>Number<span class="token punctuation">.</span>MIN_SAFE_INTEGER <span class="token operator">===</span> <span class="token operator">-</span><span class="token number">9007199254740991</span><span class="token comment" spellcheck="true">
+// true
+</span></code></pre>
+<p>上面代码中，可以看到JavaScript能够精确表示的极限。</p>
+<p><code>Number.isSafeInteger()</code>则是用来判断一个整数是否落在这个范围之内。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // false
+</span>Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // false
+</span>Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // false
+</span>Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span><span class="token number">Infinity</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // false
+</span>Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">Infinity</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // false
+</span>
+Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span><span class="token number">3</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // true
+</span>Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span><span class="token number">1.2</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // false
+</span>Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span><span class="token number">9007199254740990</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // true
+</span>Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span><span class="token number">9007199254740992</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // false
+</span>
+Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span>Number<span class="token punctuation">.</span>MIN_SAFE_INTEGER <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // false
+</span>Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span>Number<span class="token punctuation">.</span>MIN_SAFE_INTEGER<span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // true
+</span>Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span>Number<span class="token punctuation">.</span>MAX_SAFE_INTEGER<span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // true
+</span>Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span>Number<span class="token punctuation">.</span>MAX_SAFE_INTEGER <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // false
+</span></code></pre>
+<p>这个函数的实现很简单，就是跟安全整数的两个边界值比较一下。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Number<span class="token punctuation">.</span>isSafeInteger <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> n <span class="token operator">===</span> <span class="token string">'number'</span> <span class="token operator">&amp;&amp;</span>
+    Math<span class="token punctuation">.</span><span class="token function">round<span class="token punctuation">(</span></span>n<span class="token punctuation">)</span> <span class="token operator">===</span> n <span class="token operator">&amp;&amp;</span>
+    Number<span class="token punctuation">.</span>MIN_SAFE_INTEGER <span class="token operator">&lt;=</span> n <span class="token operator">&amp;&amp;</span>
+    n <span class="token operator">&lt;=</span> Number<span class="token punctuation">.</span>MAX_SAFE_INTEGER<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>实际使用这个函数时，需要注意。验证运算结果是否落在安全整数的范围内，不要只验证运算结果，而要同时验证参与运算的每个值。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span><span class="token number">9007199254740993</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">
+// false
+</span>Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span><span class="token number">990</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">
+// true
+</span>Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span><span class="token number">9007199254740993</span> <span class="token operator">-</span> <span class="token number">990</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">
+// true
+</span><span class="token number">9007199254740993</span> <span class="token operator">-</span> <span class="token number">990</span><span class="token comment" spellcheck="true">
+// 返回结果 9007199254740002
+</span><span class="token comment" spellcheck="true">// 正确答案应该是 9007199254740003
+</span></code></pre>
+<p>上面代码中，<code>9007199254740993</code>不是一个安全整数，但是<code>Number.isSafeInteger</code>会返回结果，显示计算结果是安全的。这是因为，这个数超出了精度范围，导致在计算机内部，以<code>9007199254740992</code>的形式储存。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token number">9007199254740993</span> <span class="token operator">===</span> <span class="token number">9007199254740992</span><span class="token comment" spellcheck="true">
+// true
+</span></code></pre>
+<p>所以，如果只验证运算结果是否为安全整数，很可能得到错误结果。下面的函数可以同时验证两个运算数和运算结果。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">function</span> trusty <span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">,</span> result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>
+    Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span>left<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
+    Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span>right<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
+    Number<span class="token punctuation">.</span><span class="token function">isSafeInteger<span class="token punctuation">(</span></span>result<span class="token punctuation">)</span>
+  <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RangeError</span><span class="token punctuation">(</span><span class="token string">'Operation cannot be trusted!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">trusty<span class="token punctuation">(</span></span><span class="token number">9007199254740993</span><span class="token punctuation">,</span> <span class="token number">990</span><span class="token punctuation">,</span> <span class="token number">9007199254740993</span> <span class="token operator">-</span> <span class="token number">990</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">
+// RangeError: Operation cannot be trusted!
+</span>
+<span class="token function">trusty<span class="token punctuation">(</span></span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">
+// 3
+</span></code></pre>
+<h2 id="Math对象的扩展" class="Math对象的扩展">Math对象的扩展</h2>
+<p>ES6在Math对象上新增了17个与数学相关的方法。所有这些方法都是静态方法，只能在Math对象上调用。</p>
+<h3 id="Math-trunc" class="Math-trunc">Math.trunc()</h3>
+<p><code>Math.trunc</code>方法用于去除一个数的小数部分，返回整数部分。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">trunc<span class="token punctuation">(</span></span><span class="token number">4.1</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 4
+</span>Math<span class="token punctuation">.</span><span class="token function">trunc<span class="token punctuation">(</span></span><span class="token number">4.9</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 4
+</span>Math<span class="token punctuation">.</span><span class="token function">trunc<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">4.1</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // -4
+</span>Math<span class="token punctuation">.</span><span class="token function">trunc<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">4.9</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // -4
+</span>Math<span class="token punctuation">.</span><span class="token function">trunc<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">0.1234</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // -0
+</span></code></pre>
+<p>对于非数值，<code>Math.trunc</code>内部使用<code>Number</code>方法将其先转为数值。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">trunc<span class="token punctuation">(</span></span><span class="token string">'123.456'</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">
+// 123
+</span></code></pre>
+<p>对于空值和无法截取整数的值，返回NaN。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">trunc<span class="token punctuation">(</span></span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true"> // NaN
+</span>Math<span class="token punctuation">.</span><span class="token function">trunc<span class="token punctuation">(</span></span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true"> // NaN
+</span>Math<span class="token punctuation">.</span><span class="token function">trunc<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true"> // NaN
+</span></code></pre>
+<p>对于没有部署这个方法的环境，可以用下面的代码模拟。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span>trunc <span class="token operator">=</span> Math<span class="token punctuation">.</span>trunc <span class="token operator">||</span> <span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> x <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">?</span> Math<span class="token punctuation">.</span><span class="token function">ceil<span class="token punctuation">(</span></span>x<span class="token punctuation">)</span> <span class="token punctuation">:</span> Math<span class="token punctuation">.</span><span class="token function">floor<span class="token punctuation">(</span></span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="Math-sign" class="Math-sign">Math.sign()</h3>
+<p><code>Math.sign</code>方法用来判断一个数到底是正数、负数、还是零。对于非数值，会先将其转换为数值。</p>
+<p>它会返回五种值。</p>
+<ul>
+<li>参数为正数，返回+1；</li>
+<li>参数为负数，返回-1；</li>
+<li>参数为0，返回0；</li>
+<li>参数为-0，返回-0;</li>
+<li>其他值，返回NaN。</li>
+</ul>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">sign<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // -1
+</span>Math<span class="token punctuation">.</span><span class="token function">sign<span class="token punctuation">(</span></span><span class="token number">5</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // +1
+</span>Math<span class="token punctuation">.</span><span class="token function">sign<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // +0
+</span>Math<span class="token punctuation">.</span><span class="token function">sign<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // -0
+</span>Math<span class="token punctuation">.</span><span class="token function">sign<span class="token punctuation">(</span></span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // NaN
+</span>Math<span class="token punctuation">.</span><span class="token function">sign<span class="token punctuation">(</span></span><span class="token string">'9'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // +1
+</span>Math<span class="token punctuation">.</span><span class="token function">sign<span class="token punctuation">(</span></span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // NaN
+</span>Math<span class="token punctuation">.</span><span class="token function">sign<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true"> // NaN
+</span></code></pre>
+<p>对于没有部署这个方法的环境，可以用下面的代码模拟。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span>sign <span class="token operator">=</span> Math<span class="token punctuation">.</span>sign <span class="token operator">||</span> <span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  x <span class="token operator">=</span> <span class="token operator">+</span>x<span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // convert to a number
+</span>  <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">===</span> <span class="token number">0</span> <span class="token operator">||</span> <span class="token function">isNaN<span class="token punctuation">(</span></span>x<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> x <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token operator">?</span> <span class="token number">1</span> <span class="token punctuation">:</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="Math-cbrt" class="Math-cbrt">Math.cbrt()</h3>
+<p><code>Math.cbrt</code>方法用于计算一个数的立方根。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">cbrt<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // -1
+</span>Math<span class="token punctuation">.</span><span class="token function">cbrt<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"> // 0
+</span>Math<span class="token punctuation">.</span><span class="token function">cbrt<span class="token punctuation">(</span></span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"> // 1
+</span>Math<span class="token punctuation">.</span><span class="token function">cbrt<span class="token punctuation">(</span></span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"> // 1.2599210498948734
+</span></code></pre>
+<p>对于非数值，<code>Math.cbrt</code>方法内部也是先使用<code>Number</code>方法将其转为数值。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">cbrt<span class="token punctuation">(</span></span><span class="token string">'8'</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 2
+</span>Math<span class="token punctuation">.</span><span class="token function">cbrt<span class="token punctuation">(</span></span><span class="token string">'hello'</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // NaN
+</span></code></pre>
+<p>对于没有部署这个方法的环境，可以用下面的代码模拟。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span>cbrt <span class="token operator">=</span> Math<span class="token punctuation">.</span>cbrt <span class="token operator">||</span> <span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> y <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">pow<span class="token punctuation">(</span></span>Math<span class="token punctuation">.</span><span class="token function">abs<span class="token punctuation">(</span></span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token operator">/</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> x <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">?</span> <span class="token operator">-</span>y <span class="token punctuation">:</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="Math-clz32" class="Math-clz32">Math.clz32()</h3>
+<p>JavaScript的整数使用32位二进制形式表示，<code>Math.clz32</code>方法返回一个数的32位无符号整数形式有多少个前导0。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 32
+</span>Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span><span class="token number">1</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 31
+</span>Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 22
+</span>Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span>0b01000000000000000000000000000000<span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 1
+</span>Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span>0b00100000000000000000000000000000<span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 2
+</span></code></pre>
+<p>上面代码中，0的二进制形式全为0，所以有32个前导0；1的二进制形式是<code>0b1</code>，只占1位，所以32位之中有31个前导0；1000的二进制形式是<code>0b1111101000</code>，一共有10位，所以32位之中有22个前导0。</p>
+<p><code>clz32</code>这个函数名就来自”count leading zero bits in 32-bit binary representations of a number“（计算32位整数的前导0）的缩写。</p>
+<p>左移运算符（<code>&lt;&lt;</code>）与<code>Math.clz32</code>方法直接相关。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 32
+</span>Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span><span class="token number">1</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 31
+</span>Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span><span class="token number">1</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 30
+</span>Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span><span class="token number">1</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 29
+</span>Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span><span class="token number">1</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token number">29</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 2
+</span></code></pre>
+<p>对于小数，<code>Math.clz32</code>方法只考虑整数部分。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span><span class="token number">3.2</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 30
+</span>Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span><span class="token number">3.9</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 30
+</span></code></pre>
+<p>对于空值或其他类型的值，<code>Math.clz32</code>方法会将它们先转为数值，然后再计算。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 32
+</span>Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 32
+</span>Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span><span class="token number">Infinity</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 32
+</span>Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 32
+</span>Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 32
+</span>Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 32
+</span>Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 32
+</span>Math<span class="token punctuation">.</span><span class="token function">clz32<span class="token punctuation">(</span></span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 31
+</span></code></pre>
+<h3 id="Math-imul" class="Math-imul">Math.imul()</h3>
+<p><code>Math.imul</code>方法返回两个数以32位带符号整数形式相乘的结果，返回的也是一个32位的带符号整数。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">imul<span class="token punctuation">(</span></span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"> // 8
+</span>Math<span class="token punctuation">.</span><span class="token function">imul<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"> // -8
+</span>Math<span class="token punctuation">.</span><span class="token function">imul<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 4
+</span></code></pre>
+<p>如果只考虑最后32位，大多数情况下，<code>Math.imul(a, b)</code>与<code>a * b</code>的结果是相同的，即该方法等同于<code>(a * b)|0</code>的效果（超过32位的部分溢出）。之所以需要部署这个方法，是因为JavaScript有精度限制，超过2的53次方的值无法精确表示。这就是说，对于那些很大的数的乘法，低位数值往往都是不精确的，<code>Math.imul</code>方法可以返回正确的低位数值。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token punctuation">(</span><span class="token number">0x7fffffff</span> <span class="token operator">*</span> <span class="token number">0x7fffffff</span><span class="token punctuation">)</span><span class="token operator">|</span><span class="token number">0</span><span class="token comment" spellcheck="true"> // 0
+</span></code></pre>
+<p>上面这个乘法算式，返回结果为0。但是由于这两个二进制数的最低位都是1，所以这个结果肯定是不正确的，因为根据二进制乘法，计算结果的二进制最低位应该也是1。这个错误就是因为它们的乘积超过了2的53次方，JavaScript无法保存额外的精度，就把低位的值都变成了0。<code>Math.imul</code>方法可以返回正确的值1。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">imul<span class="token punctuation">(</span></span><span class="token number">0x7fffffff</span><span class="token punctuation">,</span> <span class="token number">0x7fffffff</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 1
+</span></code></pre>
+<h3 id="Math-fround" class="Math-fround">Math.fround()</h3>
+<p>Math.fround方法返回一个数的单精度浮点数形式。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">fround<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true"> // 0
+</span>Math<span class="token punctuation">.</span><span class="token function">fround<span class="token punctuation">(</span></span><span class="token number">1</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true"> // 1
+</span>Math<span class="token punctuation">.</span><span class="token function">fround<span class="token punctuation">(</span></span><span class="token number">1.337</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 1.3370000123977661
+</span>Math<span class="token punctuation">.</span><span class="token function">fround<span class="token punctuation">(</span></span><span class="token number">1.5</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"> // 1.5
+</span>Math<span class="token punctuation">.</span><span class="token function">fround<span class="token punctuation">(</span></span><span class="token number">NaN</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"> // NaN
+</span></code></pre>
+<p>对于整数来说，<code>Math.fround</code>方法返回结果不会有任何不同，区别主要是那些无法用64个二进制位精确表示的小数。这时，<code>Math.fround</code>方法会返回最接近这个小数的单精度浮点数。</p>
+<p>对于没有部署这个方法的环境，可以用下面的代码模拟。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span>fround <span class="token operator">=</span> Math<span class="token punctuation">.</span>fround <span class="token operator">||</span> <span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Float32Array</span><span class="token punctuation">(</span><span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="Math-hypot" class="Math-hypot">Math.hypot()</h3>
+<p><code>Math.hypot</code>方法返回所有参数的平方和的平方根。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">hypot<span class="token punctuation">(</span></span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment" spellcheck="true"> // 5
+</span>Math<span class="token punctuation">.</span><span class="token function">hypot<span class="token punctuation">(</span></span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true"> // 7.0710678118654755
+</span>Math<span class="token punctuation">.</span><span class="token function">hypot<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment" spellcheck="true"> // 0
+</span>Math<span class="token punctuation">.</span><span class="token function">hypot<span class="token punctuation">(</span></span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true"> // NaN
+</span>Math<span class="token punctuation">.</span><span class="token function">hypot<span class="token punctuation">(</span></span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // NaN
+</span>Math<span class="token punctuation">.</span><span class="token function">hypot<span class="token punctuation">(</span></span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">'5'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true"> // 7.0710678118654755
+</span>Math<span class="token punctuation">.</span><span class="token function">hypot<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment" spellcheck="true"> // 3
+</span></code></pre>
+<p>上面代码中，3的平方加上4的平方，等于5的平方。</p>
+<p>如果参数不是数值，<code>Math.hypot</code>方法会将其转为数值。只要有一个参数无法转为数值，就会返回NaN。</p>
+<h3 id="对数方法" class="对数方法">对数方法</h3>
+<p>ES6新增了4个对数相关方法。</p>
+<p><strong>（1） Math.expm1()</strong></p>
+<p><code>Math.expm1(x)</code>返回e<sup>x</sup> - 1，即<code>Math.exp(x) - 1</code>。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">expm1<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // -0.6321205588285577
+</span>Math<span class="token punctuation">.</span><span class="token function">expm1<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"> // 0
+</span>Math<span class="token punctuation">.</span><span class="token function">expm1<span class="token punctuation">(</span></span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"> // 1.718281828459045
+</span></code></pre>
+<p>对于没有部署这个方法的环境，可以用下面的代码模拟。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span>expm1 <span class="token operator">=</span> Math<span class="token punctuation">.</span>expm1 <span class="token operator">||</span> <span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">exp<span class="token punctuation">(</span></span>x<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p><strong>（2）Math.log1p()</strong></p>
+<p><code>Math.log1p(x)</code>方法返回<code>1 + x</code>的自然对数，即<code>Math.log(1 + x)</code>。如果<code>x</code>小于-1，返回<code>NaN</code>。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">log1p<span class="token punctuation">(</span></span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"> // 0.6931471805599453
+</span>Math<span class="token punctuation">.</span><span class="token function">log1p<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"> // 0
+</span>Math<span class="token punctuation">.</span><span class="token function">log1p<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // -Infinity
+</span>Math<span class="token punctuation">.</span><span class="token function">log1p<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // NaN
+</span></code></pre>
+<p>对于没有部署这个方法的环境，可以用下面的代码模拟。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span>log1p <span class="token operator">=</span> Math<span class="token punctuation">.</span>log1p <span class="token operator">||</span> <span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token number">1</span> <span class="token operator">+</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p><strong>（3）Math.log10()</strong></p>
+<p><code>Math.log10(x)</code>返回以10为底的<code>x</code>的对数。如果<code>x</code>小于0，则返回NaN。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">log10<span class="token punctuation">(</span></span><span class="token number">2</span><span class="token punctuation">)</span>     <span class="token comment" spellcheck="true"> // 0.3010299956639812
+</span>Math<span class="token punctuation">.</span><span class="token function">log10<span class="token punctuation">(</span></span><span class="token number">1</span><span class="token punctuation">)</span>     <span class="token comment" spellcheck="true"> // 0
+</span>Math<span class="token punctuation">.</span><span class="token function">log10<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">)</span>     <span class="token comment" spellcheck="true"> // -Infinity
+</span>Math<span class="token punctuation">.</span><span class="token function">log10<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true"> // NaN
+</span>Math<span class="token punctuation">.</span><span class="token function">log10<span class="token punctuation">(</span></span><span class="token number">100000</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 5
+</span></code></pre>
+<p>对于没有部署这个方法的环境，可以用下面的代码模拟。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span>log10 <span class="token operator">=</span> Math<span class="token punctuation">.</span>log10 <span class="token operator">||</span> <span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>x<span class="token punctuation">)</span> <span class="token operator">/</span> Math<span class="token punctuation">.</span>LN10<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p><strong>（4）Math.log2()</strong></p>
+<p><code>Math.log2(x)</code>返回以2为底的<code>x</code>的对数。如果<code>x</code>小于0，则返回NaN。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">log2<span class="token punctuation">(</span></span><span class="token number">3</span><span class="token punctuation">)</span>      <span class="token comment" spellcheck="true"> // 1.584962500721156
+</span>Math<span class="token punctuation">.</span><span class="token function">log2<span class="token punctuation">(</span></span><span class="token number">2</span><span class="token punctuation">)</span>      <span class="token comment" spellcheck="true"> // 1
+</span>Math<span class="token punctuation">.</span><span class="token function">log2<span class="token punctuation">(</span></span><span class="token number">1</span><span class="token punctuation">)</span>      <span class="token comment" spellcheck="true"> // 0
+</span>Math<span class="token punctuation">.</span><span class="token function">log2<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">)</span>      <span class="token comment" spellcheck="true"> // -Infinity
+</span>Math<span class="token punctuation">.</span><span class="token function">log2<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span>     <span class="token comment" spellcheck="true"> // NaN
+</span>Math<span class="token punctuation">.</span><span class="token function">log2<span class="token punctuation">(</span></span><span class="token number">1024</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true"> // 10
+</span>Math<span class="token punctuation">.</span><span class="token function">log2<span class="token punctuation">(</span></span><span class="token number">1</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token number">29</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 29
+</span></code></pre>
+<p>对于没有部署这个方法的环境，可以用下面的代码模拟。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span>log2 <span class="token operator">=</span> Math<span class="token punctuation">.</span>log2 <span class="token operator">||</span> <span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>x<span class="token punctuation">)</span> <span class="token operator">/</span> Math<span class="token punctuation">.</span>LN2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="双曲函数方法" class="双曲函数方法">双曲函数方法</h3>
+<p>ES6新增了6个双曲函数方法。</p>
+<ul>
+<li><code>Math.sinh(x)</code> 返回<code>x</code>的双曲正弦（hyperbolic sine）</li>
+<li><code>Math.cosh(x)</code> 返回<code>x</code>的双曲余弦（hyperbolic cosine）</li>
+<li><code>Math.tanh(x)</code> 返回<code>x</code>的双曲正切（hyperbolic tangent）</li>
+<li><code>Math.asinh(x)</code> 返回<code>x</code>的反双曲正弦（inverse hyperbolic sine）</li>
+<li><code>Math.acosh(x)</code> 返回<code>x</code>的反双曲余弦（inverse hyperbolic cosine）</li>
+<li><code>Math.atanh(x)</code> 返回<code>x</code>的反双曲正切（inverse hyperbolic tangent）</li>
+</ul>
+<h2 id="Math-signbit" class="Math-signbit">Math.signbit()</h2>
+<p><code>Math.sign()</code>用来判断一个值的正负，但是如果参数是<code>-0</code>，它会返回<code>-0</code>。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">sign<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // -0
+</span></code></pre>
+<p>这导致对于判断符号位的正负，<code>Math.sign()</code>不是很有用。JavaScript 内部使用64位浮点数（国际标准IEEE 754）表示数值，IEEE 754规定第一位是符号位，<code>0</code>表示正数，<code>1</code>表示负数。所以会有两种零，<code>+0</code>是符号位为<code>0</code>时的零值，<code>-0</code>是符号位为<code>1</code>时的零值。实际编程中，判断一个值是<code>+0</code>还是<code>-0</code>非常麻烦，因为它们是相等的。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token operator">+</span><span class="token number">0</span> <span class="token operator">===</span> <span class="token operator">-</span><span class="token number">0</span><span class="token comment" spellcheck="true"> // true
+</span></code></pre>
+<p>目前，有一个<a href="http://jfbastien.github.io/papers/Math.signbit.html">提案</a>，引入了<code>Math.signbit()</code>方法判断一个数的符号位是否设置了。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">signbit<span class="token punctuation">(</span></span><span class="token number">2</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> //false
+</span>Math<span class="token punctuation">.</span><span class="token function">signbit<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> //true
+</span>Math<span class="token punctuation">.</span><span class="token function">signbit<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> //false
+</span>Math<span class="token punctuation">.</span><span class="token function">signbit<span class="token punctuation">(</span></span><span class="token operator">-</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> //true
+</span></code></pre>
+<p>可以看到，该方法正确返回了<code>-0</code>的符号位是设置了的。</p>
+<p>该方法的算法如下。</p>
+<ul>
+<li>如果参数是<code>NaN</code>，返回<code>false</code></li>
+<li>如果参数是<code>-0</code>，返回<code>true</code></li>
+<li>如果参数是负值，返回<code>true</code></li>
+<li>其他情况返回<code>false</code></li>
+</ul>
+<h2 id="指数运算符" class="指数运算符">指数运算符</h2>
+<p>ES2016 新增了一个指数运算符（<code>**</code>）。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token number">2</span> <span class="token operator">*</span><span class="token operator">*</span> <span class="token number">2</span><span class="token comment" spellcheck="true"> // 4
+</span><span class="token number">2</span> <span class="token operator">*</span><span class="token operator">*</span> <span class="token number">3</span><span class="token comment" spellcheck="true"> // 8
+</span></code></pre>
+<p>指数运算符可以与等号结合，形成一个新的赋值运算符（<code>**=</code>）。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">1.5</span><span class="token punctuation">;</span>
+a <span class="token operator">*</span><span class="token operator">*</span><span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">
+// 等同于 a = a * a;
+</span>
+<span class="token keyword">let</span> b <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+b <span class="token operator">*</span><span class="token operator">*</span><span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">
+// 等同于 b = b * b * b;
+</span></code></pre>
+<p>注意，在 V8 引擎中，指数运算符与<code>Math.pow</code>的实现不相同，对于特别大的运算结果，两者会有细微的差异。</p>
+<pre class=" language-javascript"><code class=" language-javascript">Math<span class="token punctuation">.</span><span class="token function">pow<span class="token punctuation">(</span></span><span class="token number">99</span><span class="token punctuation">,</span> <span class="token number">99</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">
+// 3.697296376497263e+197
+</span>
+<span class="token number">99</span> <span class="token operator">*</span><span class="token operator">*</span> <span class="token number">99</span><span class="token comment" spellcheck="true">
+// 3.697296376497268e+197
+</span></code></pre>
+<p>上面代码中，两个运算结果的最后一位有效数字是有差异的。</p>
+<h2 id="Integer-数据类型" class="Integer-数据类型">Integer 数据类型</h2>
+<h3 id="简介" class="简介">简介</h3>
+<p>JavaScript 所有数字都保存成64位浮点数，这决定了整数的精确程度只能到53个二进制位。大于这个范围的整数，JavaScript 是无法精确表示的，这使得 JavaScript 不适合进行科学和金融方面的精确计算。</p>
+<p>现在有一个<a href="https://github.com/tc39/proposal-bigint">提案</a>，引入了新的数据类型 Integer（整数），来解决这个问题。整数类型的数据只用来表示整数，没有位数的限制，任何位数的整数都可以精确表示。</p>
+<p>为了与 Number 类型区别，Integer 类型的数据必须使用后缀<code>n</code>表示。</p>
+<pre class=" language-javascript"><code class=" language-javascript">1n <span class="token operator">+</span> 2n<span class="token comment" spellcheck="true"> // 3n
+</span></code></pre>
+<p>二进制、八进制、十六进制的表示法，都要加上后缀<code>n</code>。</p>
+<pre class=" language-javascript"><code class=" language-javascript">0b1101n<span class="token comment" spellcheck="true"> // 二进制
+</span>0o777n<span class="token comment" spellcheck="true"> // 八进制
+</span>0xFFn<span class="token comment" spellcheck="true"> // 十六进制
+</span></code></pre>
+<p><code>typeof</code>运算符对于 Integer 类型的数据返回<code>integer</code>。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">typeof</span> 123n<span class="token comment" spellcheck="true">
+// 'integer'
+</span></code></pre>
+<p>JavaScript 原生提供<code>Integer</code>对象，用来生成 Integer 类型的数值。转换规则基本与<code>Number()</code>一致。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token function">Integer<span class="token punctuation">(</span></span><span class="token number">123</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 123n
+</span><span class="token function">Integer<span class="token punctuation">(</span></span><span class="token string">'123'</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 123n
+</span><span class="token function">Integer<span class="token punctuation">(</span></span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 0n
+</span><span class="token function">Integer<span class="token punctuation">(</span></span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 1n
+</span></code></pre>
+<p>以下的用法会报错。</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // TypeError
+</span><span class="token function">Integer<span class="token punctuation">(</span></span>undefined<span class="token punctuation">)</span><span class="token comment" spellcheck="true"> //TypeError
+</span><span class="token function">Integer<span class="token punctuation">(</span></span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // TypeError
+</span><span class="token function">Integer<span class="token punctuation">(</span></span><span class="token string">'123n'</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // SyntaxError
+</span><span class="token function">Integer<span class="token punctuation">(</span></span><span class="token string">'abc'</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // SyntaxError
+</span></code></pre>
+<h3 id="运算" class="运算">运算</h3>
+<p>在数学运算方面，Integer 类型的<code>+</code>、<code>-</code>、<code>*</code>和<code>**</code>这四个二元运算符，与 Number 类型的行为一致。除法运算<code>/</code>会舍去小数部分，返回一个整数。</p>
+<pre class=" language-javascript"><code class=" language-javascript">9n <span class="token operator">/</span> 5n<span class="token comment" spellcheck="true">
+// 1n
+</span></code></pre>
+<p>几乎所有的 Number 运算符都可以用在 Integer，但是有两个除外：不带符号的右移位运算符<code>&gt;&gt;&gt;</code>和一元的求正运算符<code>+</code>，使用时会报错。前者是因为<code>&gt;&gt;&gt;</code>要求最高位补0，但是 Integer 类型没有最高位，导致这个运算符无意义。后者是因为一元运算符<code>+</code>在 asm.js 里面总是返回 Number 类型或者报错。</p>
+<p>Integer 类型不能与 Number 类型进行混合运算。</p>
+<pre class=" language-javascript"><code class=" language-javascript">1n <span class="token operator">+</span> <span class="token number">1</span><span class="token comment" spellcheck="true">
+// 报错
+</span></code></pre>
+<p>这是因为无论返回的是 Integer 或 Number，都会导致丢失信息。比如<code>(2n**53n + 1n) + 0.5</code>这个表达式，如果返回 Integer 类型，<code>0.5</code>这个小数部分会丢失；如果返回 Number 类型，会超过 53 位精确数字，精度下降。</p>
+<p>相等运算符（<code>==</code>）会改变数据类型，也是不允许混合使用。</p>
+<pre class=" language-javascript"><code class=" language-javascript">0n <span class="token operator">==</span> <span class="token number">0</span><span class="token comment" spellcheck="true">
+// 报错 TypeError
+</span>
+0n <span class="token operator">==</span> <span class="token boolean">false</span><span class="token comment" spellcheck="true">
+// 报错 TypeError
+</span></code></pre>
+<p>精确相等运算符（<code>===</code>）不会改变数据类型，因此可以混合使用。</p>
+<pre class=" language-javascript"><code class=" language-javascript">0n <span class="token operator">===</span> <span class="token number">0</span><span class="token comment" spellcheck="true">
+// false
+</span></code></pre>
+<h3 class="留言" id="留言">留言</h3><div id="disqus_thread"></div></div>
+  <!-- optional -->
+
+
+
+</body></html>

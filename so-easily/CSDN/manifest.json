@@ -1,0 +1,24 @@
+{
+    "name": "CSDN去广告插件",
+    "manifest_version": 2,
+    "version": "1.0",
+    "description": "CSDN去广告插件",
+
+    "browser_action":
+    {
+        "default_icon": "img/icon16.png",
+        "default_title": "CSDN去广告插件"
+    },
+
+    "icons":{
+        "16": "img/icon16.png",
+        "48": "img/icon48.png",
+        "128": "img/icon128.png"
+    },
+
+    "content_scripts": [
+    {
+        "matches": ["<all_urls>"],
+        "js": ["csdn.js"]
+    }]
+}
